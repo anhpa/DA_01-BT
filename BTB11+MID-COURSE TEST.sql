@@ -50,6 +50,13 @@ FROM customer_contracts as c
 LEFT JOIN products AS p on c.product_id=p.product_id
 GROUP BY c.customer_id,p.product_name,product_category
 
+--Bài sửa
+SELECT customer_id
+FROM customer_contracts as a1
+inner JOIN products AS b1 on a1.product_id=b1.product_id
+GROUP BY customer_id
+HAVING count(DISTINCT b1.product_category)=(select count(DISTINCT product_category) FROM products)
+
 --5.Write a solution to report the ids and the names of all managers, the number of employees who report directly to them, and the average age of the reports rounded to the nearest integer. Return the result table ordered by employee_id.
 --Không điều chỉnh được tên cột age
 
